@@ -12,4 +12,8 @@ RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - && \
 RUN yum install -y nodejs \
                    yarn
 
-WORKDIR /src
+RUN yum clean all && \
+    rm -rf /var/cache/yum
+
+RUN groupadd -g 1000 node && \
+    useradd -u 1000 -g 1000 node
